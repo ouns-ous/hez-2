@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400" fill="none">
+  <!-- Cadre orné du tapis de jeu marocain — 9 tranches (slice 120) -->
+  <defs>
+    <!-- Dégradé bois chaleureux marocain -->
+    <linearGradient id="woodGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#df9a56"/>
+      <stop offset="35%" stop-color="#ba7031"/>
+      <stop offset="75%" stop-color="#844517"/>
+      <stop offset="100%" stop-color="#542609"/>
+    </linearGradient>
+
+    <!-- Dégradé or pour filets et ornements -->
+    <linearGradient id="goldFillet" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff0c7"/>
+      <stop offset="40%" stop-color="#e5b458"/>
+      <stop offset="85%" stop-color="#a87422"/>
+      <stop offset="100%" stop-color="#593b0a"/>
+    </linearGradient>
+
+    <!-- Remplissage intérieur arcade mauresque -->
+    <radialGradient id="archFill" cx="40%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#fcedd0"/>
+      <stop offset="65%" stop-color="#e5caa1"/>
+      <stop offset="100%" stop-color="#baa074"/>
+    </radialGradient>
+
+    <!-- Dégradé des rails de liaison -->
+    <linearGradient id="railH" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffe4b0"/>
+      <stop offset="25%" stop-color="#c57f3c"/>
+      <stop offset="70%" stop-color="#8a4d1d"/>
+      <stop offset="100%" stop-color="#462208"/>
+    </linearGradient>
+
+    <linearGradient id="railV" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffe4b0"/>
+      <stop offset="25%" stop-color="#c57f3c"/>
+      <stop offset="70%" stop-color="#8a4d1d"/>
+      <stop offset="100%" stop-color="#462208"/>
+    </linearGradient>
+
+    <!-- Motif d'écoinçon (haut-gauche) -->
+    <g id="cornerBracket">
+      <!-- Ombre portée sous le renfort en bois -->
+      <path d="M 6 120 C 6 52 52 6 120 6 L 120 22 C 62 22 22 62 22 120 Z"
+            fill="#05191c" opacity="0.45" transform="translate(3, 4)"/>
+
+      <!-- Barre de raccordement horizontale et verticale -->
+      <path d="M 12 120 L 12 60 C 12 34 34 12 60 12 L 120 12 L 120 26 L 64 26 C 42 26 26 42 26 64 L 26 120 Z"
+            fill="url(#woodGrad)" stroke="#4a2108" stroke-width="2"/>
+
+      <!-- Corps du renfort ornemental avec arcade mauresque -->
+      <path d="M 18 120 C 18 70 70 18 120 18 L 120 32 C 84 32 64 42 52 54 C 42 64 32 84 32 120 Z"
+            fill="url(#woodGrad)" stroke="#ffdca0" stroke-width="1.5"/>
+
+      <!-- Évidement / Arcade intérieure avec motif arabesque -->
+      <path d="M 44 116 C 44 86 58 72 72 58 C 86 44 116 44 116 44 C 116 44 94 56 86 64 C 74 76 64 96 64 116 Z"
+            fill="url(#archFill)" stroke="url(#goldFillet)" stroke-width="1.8"/>
+
+      <!-- Rosace / Rivet doré au centre de la console -->
+      <circle cx="76" cy="76" r="14" fill="url(#goldFillet)" stroke="#422006" stroke-width="2"/>
+      <circle cx="76" cy="76" r="8" fill="#6a3510" stroke="#ffd992" stroke-width="1.5"/>
+      <circle cx="76" cy="76" r="3" fill="#ffeec7"/>
+
+      <!-- Petits rivets décoratifs -->
+      <circle cx="114" cy="22" r="3" fill="url(#goldFillet)" stroke="#3d1d06" stroke-width="1"/>
+      <circle cx="22" cy="114" r="3" fill="url(#goldFillet)" stroke="#3d1d06" stroke-width="1"/>
+    </g>
+  </defs>
+
+  <!-- Rails de liaison (se répètent ou s'étirent le long des 4 bords) -->
+  <!-- Rail supérieur -->
+  <rect x="120" y="16" width="160" height="10" rx="3" fill="url(#railH)" stroke="#451e06" stroke-width="1.2"/>
+  <line x1="120" y1="18" x2="280" y2="18" stroke="#ffe2a3" stroke-width="1.2" stroke-opacity="0.8"/>
+
+  <!-- Rail inférieur -->
+  <rect x="120" y="374" width="160" height="10" rx="3" fill="url(#railH)" stroke="#451e06" stroke-width="1.2"/>
+  <line x1="120" y1="376" x2="280" y2="376" stroke="#ffe2a3" stroke-width="1.2" stroke-opacity="0.8"/>
+
+  <!-- Rail gauche -->
+  <rect x="16" y="120" width="10" height="160" rx="3" fill="url(#railV)" stroke="#451e06" stroke-width="1.2"/>
+  <line x1="18" y1="120" x2="18" y2="280" stroke="#ffe2a3" stroke-width="1.2" stroke-opacity="0.8"/>
+
+  <!-- Rail droit -->
+  <rect x="374" y="120" width="10" height="160" rx="3" fill="url(#railV)" stroke="#451e06" stroke-width="1.2"/>
+  <line x1="376" y1="120" x2="376" y2="280" stroke="#ffe2a3" stroke-width="1.2" stroke-opacity="0.8"/>
+
+  <!-- Les 4 consoles d'angle (coins) -->
+  <!-- Coin Haut-Gauche -->
+  <use href="#cornerBracket" x="0" y="0"/>
+
+  <!-- Coin Haut-Droit -->
+  <g transform="translate(400, 0) scale(-1, 1)">
+    <use href="#cornerBracket"/>
+  </g>
+
+  <!-- Coin Bas-Gauche -->
+  <g transform="translate(0, 400) scale(1, -1)">
+    <use href="#cornerBracket"/>
+  </g>
+
+  <!-- Coin Bas-Droit -->
+  <g transform="translate(400, 400) scale(-1, -1)">
+    <use href="#cornerBracket"/>
+  </g>
+</svg>

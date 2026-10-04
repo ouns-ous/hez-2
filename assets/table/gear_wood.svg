@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60">
+  <!-- Bouton Paramètres en bois et or avec engrenage (façon jeu de référence) -->
+  <defs>
+    <!-- Dégradé bois chaleureux -->
+    <linearGradient id="woodBtnGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8a5327"/>
+      <stop offset="35%" stop-color="#693c18"/>
+      <stop offset="70%" stop-color="#552f11"/>
+      <stop offset="100%" stop-color="#3b1d06"/>
+    </linearGradient>
+
+    <!-- Dégradé or pour la bordure et l'engrenage -->
+    <linearGradient id="gearGold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff5cf"/>
+      <stop offset="30%" stop-color="#f5cd69"/>
+      <stop offset="70%" stop-color="#b8832a"/>
+      <stop offset="100%" stop-color="#6e4609"/>
+    </linearGradient>
+
+    <!-- Ombre bouton -->
+    <filter id="btnShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="#000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- Plaque carrée en bois aux coins arrondis -->
+  <rect x="3" y="3" width="54" height="54" rx="11" fill="url(#woodBtnGrad)" stroke="url(#gearGold)" stroke-width="2.5" filter="url(#btnShadow)"/>
+  <rect x="6" y="6" width="48" height="48" rx="8" fill="none" stroke="#2a1405" stroke-width="1.2" opacity="0.6"/>
+
+  <!-- 4 petits rivets aux coins -->
+  <circle cx="9" cy="9" r="2" fill="url(#gearGold)" stroke="#381d06" stroke-width="0.8"/>
+  <circle cx="51" cy="9" r="2" fill="url(#gearGold)" stroke="#381d06" stroke-width="0.8"/>
+  <circle cx="9" cy="51" r="2" fill="url(#gearGold)" stroke="#381d06" stroke-width="0.8"/>
+  <circle cx="51" cy="51" r="2" fill="url(#gearGold)" stroke="#381d06" stroke-width="0.8"/>
+
+  <!-- Engrenage doré au centre -->
+  <g transform="translate(30, 30)">
+    <!-- 6 dents d'engrenage -->
+    <!-- Dent 0° -->
+    <rect x="-4.5" y="-17" width="9" height="34" rx="2.5" fill="url(#gearGold)" stroke="#452706" stroke-width="1"/>
+    <!-- Dent 60° -->
+    <rect x="-4.5" y="-17" width="9" height="34" rx="2.5" transform="rotate(60)" fill="url(#gearGold)" stroke="#452706" stroke-width="1"/>
+    <!-- Dent 120° -->
+    <rect x="-4.5" y="-17" width="9" height="34" rx="2.5" transform="rotate(120)" fill="url(#gearGold)" stroke="#452706" stroke-width="1"/>
+
+    <!-- Disque principal de l'engrenage -->
+    <circle cx="0" cy="0" r="12" fill="url(#gearGold)" stroke="#452706" stroke-width="1.2"/>
+    <circle cx="0" cy="0" r="10" fill="#fadc84" stroke="#875816" stroke-width="0.8"/>
+
+    <!-- Trou central sombre -->
+    <circle cx="0" cy="0" r="4.8" fill="#301705" stroke="#1c0c02" stroke-width="1"/>
+  </g>
+</svg>

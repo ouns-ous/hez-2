@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>معاينة الكارطات — Hez 2</title>
+<style>
+  :root { --bg: #141118; --bg-2: #1d1926; --line: #3a3247; --txt: #f2ecff; --muted: #a79fbb; --danger: #e5484d; --ok: #2f9e5f; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 18px; background: var(--bg); color: var(--txt);
+         font-family: "Segoe UI", system-ui, "Noto Naskh Arabic", Tahoma, sans-serif; }
+  h1 { font-size: 19px; margin: 0 0 4px; }
+  .sub { color: var(--muted); font-size: 13px; margin: 0 0 14px; }
+  .bar { position: sticky; top: 0; background: var(--bg); padding: 8px 0 12px; z-index: 2; }
+  .pill { display: inline-block; border: 1px solid var(--line); background: var(--bg-2);
+          border-radius: 999px; padding: 5px 12px; font-size: 12.5px; margin: 0 6px 6px 0; }
+  .pill b { font-weight: 700; }
+  .suit-block { margin-bottom: 22px; }
+  .suit-title { font-size: 14px; color: var(--muted); margin: 0 0 10px; border-bottom: 1px dashed var(--line); padding-bottom: 6px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 12px; }
+  .slot { text-align: center; }
+  .slot img { width: 100%; aspect-ratio: 141.7 / 226.8; object-fit: cover;
+              border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,.5); background: #ffffff; display: block; }
+  .slot .name { font-size: 11px; color: var(--muted); margin-top: 5px; direction: ltr; }
+  .slot.missing img { display: none; }
+  .slot .miss { display: none; }
+  .slot.missing .miss {
+    display: flex; align-items: center; justify-content: center;
+    width: 100%; aspect-ratio: 141.7 / 226.8;
+    border: 2px dashed var(--danger); border-radius: 8px; color: var(--danger);
+    font-size: 12px; font-weight: 700; background: rgba(229,72,77,.08);
+  }
+  .small .slot img { width: 64px; }
+  .small .grid { grid-template-columns: repeat(auto-fill, 64px); }
+  .small .slot .name { font-size: 9px; }
+  code { background: var(--bg-2); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; font-size: 12px; direction: ltr; display: inline-block; }
+</style>
+</head>
+<body>
+
+<h1>🃏 معاينة الكارطات</h1>
+<p class="sub">هاد الصفحة كتورّي واش الـ 40 كارطة كاملين و كيفاش كيبانو ف الحجم الحقيقي ديال اللعبة.</p>
+
+<div class="bar" id="bar"></div>
+
+<div id="host"></div>
+
+<div class="suit-block small">
+  <div class="suit-title">الحجم الحقيقي فاللعبة (64 px) — كيفاش غادي يبانو</div>
+  <div class="grid" id="smallHost"></div>
+</div>
+
+<script src="js/deck.js"></script>
+<script>
+(function () {
+  var Deck = window.Hez2Deck;
+  var RANKS = Deck.RANKS;              // 1-7, 10, 11, 12
+  var counts = { ok: 0, missing: 0 };
+
+  function slot(card, label) {
+    var wrap = document.createElement('div');
+    wrap.className = 'slot';
+    var key = card.suit + '-' + card.rank;
+
+    var img = document.createElement('img');
+    img.alt = key;
+    img.loading = 'lazy';
+    img.src = 'assets/cards/' + key + '.svg';
+    img.onerror = function () {
+      if (img.dataset.tried) { wrap.classList.add('missing'); counts.missing++; paint(); return; }
+      img.dataset.tried = '1';
+      img.src = 'assets/cards/' + key + '.png';
+    };
+    img.onload = function () { counts.ok++; paint(); };
+
+    var miss = document.createElement('div');
+    miss.className = 'miss';
+    miss.textContent = 'ناقصة';
+
+    var name = document.createElement('div');
+    name.className = 'name';
+    name.textContent = label || key;
+
+    wrap.appendChild(img);
+    wrap.appendChild(miss);
+    wrap.appendChild(name);
+    return wrap;
+  }
+
+  var host = document.getElementById('host');
+  Deck.SUITS.forEach(function (suit) {
+    var block = document.createElement('div');
+    block.className = 'suit-block';
+    var title = document.createElement('div');
+    title.className = 'suit-title';
+    title.textContent = suit.emoji + '  ' + suit.ar + '  ·  ' + suit.id;
+    var grid = document.createElement('div');
+    grid.className = 'grid';
+    RANKS.forEach(function (r) {
+      grid.appendChild(slot({ suit: suit.id, rank: r }, suit.id + '-' + r));
+    });
+    block.appendChild(title);
+    block.appendChild(grid);
+    host.appendChild(block);
+  });
+
+  // aperçu à la taille réelle du jeu
+  var smallHost = document.getElementById('smallHost');
+  Deck.SUITS.forEach(function (suit) {
+    RANKS.forEach(function (r) {
+      var card = { suit: suit.id, rank: r };
+      var wrap = document.createElement('div');
+      wrap.className = 'slot';
+      var img = document.createElement('img');
+      img.alt = suit.id + '-' + r;
+      img.loading = 'lazy';
+      img.src = 'assets/cards/' + suit.id + '-' + r + '.svg';
+      img.onerror = function () { img.src = 'assets/cards/' + suit.id + '-' + r + '.png'; };
+      wrap.appendChild(img);
+      smallHost.appendChild(wrap);
+    });
+  });
+
+  function paint() {
+    var total = Deck.SUITS.length * RANKS.length;
+    document.getElementById('bar').innerHTML =
+      '<span class="pill">الكارطات الموجودة : <b>' + counts.ok + '/' + total + '</b></span>' +
+      '<span class="pill">ناقصة : <b>' + counts.missing + '</b></span>' +
+      '<span class="pill">خاصها تكون ف : <code>assets/cards/&lt;suit&gt;-&lt;rank&gt;.svg</code></span>';
+  }
+  paint();
+})();
+</script>
+</body>
+</html>

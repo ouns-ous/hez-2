@@ -1,0 +1,9 @@
+# Sources brutes des cartes : déjà importées dans assets/cards/
+# (elles restent en local, pas besoin de les pousser sur GitHub)
+cart/
+
+node_modules/
+hez2-vv/
+.DS_Store
+Thumbs.db
+desktop.ini

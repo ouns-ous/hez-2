@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="130" viewBox="0 0 160 130" fill="none">
+  <!-- Décor : Théière marocaine en terre cuite / cuivre + cuillère en bois sur le tapis -->
+  <defs>
+    <!-- Ombre douce sous la théière -->
+    <radialGradient id="potShadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#051a1e" stop-opacity="0.6"/>
+      <stop offset="60%" stop-color="#072227" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#0a2f36" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Ombre cuillère -->
+    <radialGradient id="spoonShadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#051a1e" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#072227" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Dégradé corps de la théière (cuivre / terre cuite chaud) -->
+    <radialGradient id="bodyGrad" cx="38%" cy="32%" r="62%">
+      <stop offset="0%" stop-color="#f59e6c"/>
+      <stop offset="28%" stop-color="#d96d38"/>
+      <stop offset="68%" stop-color="#a3431a"/>
+      <stop offset="100%" stop-color="#59200a"/>
+    </radialGradient>
+
+    <!-- Dégradé couvercle -->
+    <radialGradient id="lidGrad" cx="42%" cy="30%" r="58%">
+      <stop offset="0%" stop-color="#f09664"/>
+      <stop offset="45%" stop-color="#cb622f"/>
+      <stop offset="85%" stop-color="#8a3412"/>
+      <stop offset="100%" stop-color="#521c08"/>
+    </radialGradient>
+
+    <!-- Dégradé anse et bec -->
+    <linearGradient id="handleGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#df7540"/>
+      <stop offset="50%" stop-color="#a8481d"/>
+      <stop offset="100%" stop-color="#5a200a"/>
+    </linearGradient>
+
+    <linearGradient id="spoutGrad" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f7a778"/>
+      <stop offset="40%" stop-color="#cc6531"/>
+      <stop offset="100%" stop-color="#69250b"/>
+    </linearGradient>
+
+    <!-- Cuillère en bois -->
+    <linearGradient id="spoonGrad" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#c98547"/>
+      <stop offset="50%" stop-color="#e8a86c"/>
+      <stop offset="100%" stop-color="#a7632b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Ombres projetées sur le tapis -->
+  <ellipse cx="68" cy="100" rx="46" ry="16" fill="url(#potShadow)"/>
+  <ellipse cx="120" cy="74" rx="26" ry="7" transform="rotate(-38 120 74)" fill="url(#spoonShadow)"/>
+
+  <!-- Anse de la théière (à droite) -->
+  <path d="M 88 56 C 112 58 116 88 92 92 C 86 93 84 90 84 86 C 84 82 88 80 94 78 C 104 74 102 66 88 64 Z"
+        fill="url(#handleGrad)" stroke="#451806" stroke-width="1.2"/>
+
+  <!-- Bec verseur (à gauche, courbé vers le haut) -->
+  <path d="M 38 68 C 24 64 12 50 16 36 C 18 32 24 33 25 36 C 26 44 32 52 48 57 Z"
+        fill="url(#spoutGrad)" stroke="#4e1b07" stroke-width="1.2"/>
+  <ellipse cx="20.5" cy="35" rx="3.5" ry="2.2" transform="rotate(-32 20.5 35)" fill="#3d1505"/>
+
+  <!-- Corps sphérique de la théière -->
+  <ellipse cx="66" cy="74" rx="36" ry="32" fill="url(#bodyGrad)" stroke="#4e1a06" stroke-width="1.8"/>
+
+  <!-- Reflet de lumière sur la panse -->
+  <path d="M 44 58 C 42 70 48 86 60 92 C 54 88 48 76 50 64 C 51 58 53 54 56 50 C 48 52 45 55 44 58 Z"
+        fill="#ffc7a3" fill-opacity="0.38"/>
+
+  <!-- Col de la théière -->
+  <ellipse cx="66" cy="46" rx="21" ry="8" fill="#75290c" stroke="#481805" stroke-width="1.2"/>
+  <ellipse cx="66" cy="45" rx="19.5" ry="6.8" fill="#c45a27"/>
+
+  <!-- Couvercle étagé -->
+  <path d="M 48 45 C 48 38 84 38 84 45 Z" fill="url(#lidGrad)" stroke="#4e1906" stroke-width="1.2"/>
+  <ellipse cx="66" cy="38" rx="13" ry="5" fill="#e2743a" stroke="#4e1906" stroke-width="1"/>
+
+  <!-- Bouton / poignée du couvercle -->
+  <circle cx="66" cy="32" r="5" fill="#f8b688" stroke="#4a1805" stroke-width="1.2"/>
+  <ellipse cx="66" cy="34" rx="4.5" ry="2" fill="#461605" opacity="0.45"/>
+  <circle cx="65" cy="31" r="1.5" fill="#ffffff" opacity="0.7"/>
+
+  <!-- Cuillère en bois à côté -->
+  <!-- Manche -->
+  <path d="M 104 88 L 138 48 C 140 45 143 47 141 50 L 108 92 Z"
+        fill="url(#spoonGrad)" stroke="#522b10" stroke-width="1"/>
+  <!-- Creux de la cuillère -->
+  <ellipse cx="102" cy="92" rx="9" ry="6" transform="rotate(-40 102 92)"
+           fill="url(#spoonGrad)" stroke="#522b10" stroke-width="1.2"/>
+  <!-- Creux intérieur ombre -->
+  <ellipse cx="102" cy="92" rx="6.5" ry="4" transform="rotate(-40 102 92)"
+           fill="#7c3e16" opacity="0.5"/>
+</svg>

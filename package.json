@@ -1,0 +1,12 @@
+{
+  "name": "hez2",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Hez 2 — الكارطة البلدية : le jeu de cartes marocain (variante Hez 2) en web app, zéro dépendance.",
+  "keywords": ["hez2", "carta", "morocco", "card-game", "beldia", "ronda", "game"],
+  "license": "MIT",
+  "scripts": {
+    "test": "node tests/engine.test.js && node tests/ui-api.test.js",
+    "serve": "python -m http.server 8000"
+  }
+}

@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <!-- Avatar: Okan (Left player - fantasy witch / sorceress with purple hat and golden ring) -->
+  <defs>
+    <linearGradient id="goldRimOkan" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff2c2"/>
+      <stop offset="25%" stop-color="#d8a644"/>
+      <stop offset="60%" stop-color="#946519"/>
+      <stop offset="85%" stop-color="#f5cf73"/>
+      <stop offset="100%" stop-color="#5a3809"/>
+    </linearGradient>
+
+    <radialGradient id="purpleBg" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#5b2d73"/>
+      <stop offset="45%" stop-color="#341347"/>
+      <stop offset="80%" stop-color="#1b0826"/>
+      <stop offset="100%" stop-color="#0e0414"/>
+    </radialGradient>
+
+    <linearGradient id="magicGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e066ff"/>
+      <stop offset="100%" stop-color="#ff7b38"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Anneau extérieur or -->
+  <circle cx="50" cy="50" r="48" fill="url(#goldRimOkan)"/>
+  <circle cx="50" cy="50" r="44" fill="#2d1d08"/>
+  <circle cx="50" cy="50" r="42" fill="url(#purpleBg)"/>
+
+  <!-- Halo magique rosé/violet -->
+  <circle cx="50" cy="46" r="28" fill="url(#magicGlow)" opacity="0.25"/>
+
+  <!-- Cheveux roux / dorés de la sorcière -->
+  <path d="M 32 46 C 30 64 36 78 40 82 C 44 80 40 68 40 56 Z" fill="#cf5b2d"/>
+  <path d="M 68 46 C 70 64 64 78 60 82 C 56 80 60 68 60 56 Z" fill="#cf5b2d"/>
+
+  <!-- Visage délicat -->
+  <ellipse cx="50" cy="52" rx="11" ry="13" fill="#fbd5b5"/>
+  <path d="M 43 50 Q 46 52 49 50" stroke="#6b3419" stroke-width="1.2" fill="none"/>
+  <path d="M 51 50 Q 54 52 57 50" stroke="#6b3419" stroke-width="1.2" fill="none"/>
+  <path d="M 47 57 Q 50 59 53 57" stroke="#b8453d" stroke-width="1.2" fill="none"/>
+
+  <!-- Mèches de devant -->
+  <path d="M 39 44 C 42 48 44 54 44 58 C 42 54 41 48 39 44 Z" fill="#e0723a"/>
+  <path d="M 61 44 C 58 48 56 54 56 58 C 58 54 59 48 61 44 Z" fill="#e0723a"/>
+
+  <!-- Chapeau de sorcière pointu violet sombre -->
+  <!-- Bord large du chapeau -->
+  <ellipse cx="50" cy="42" rx="30" ry="9" fill="#22102f" stroke="#e078ff" stroke-width="0.8"/>
+  <ellipse cx="50" cy="41" rx="28" ry="7.5" fill="#3b1752"/>
+
+  <!-- Ruban du chapeau doré/orange -->
+  <ellipse cx="50" cy="38" rx="16" ry="5" fill="#e28c30"/>
+
+  <!-- Cône pointu du chapeau -->
+  <path d="M 36 38 C 38 28 44 18 56 12 C 54 20 60 28 64 38 Z" fill="#2c123d" stroke="#502070" stroke-width="1"/>
+  <!-- Pointe penchée -->
+  <path d="M 56 12 C 58 9 63 11 65 14 C 62 16 59 14 56 12 Z" fill="#1e0b2b"/>
+
+  <!-- Robe sombre / col -->
+  <path d="M 30 84 C 34 68 44 64 50 64 C 56 64 66 68 70 84 Z" fill="#1b0a26"/>
+  <!-- Amulette magique -->
+  <polygon points="50,68 53,73 50,78 47,73" fill="#ff4d88"/>
+
+  <!-- Éclat doré sur l'anneau -->
+  <ellipse cx="28" cy="24" rx="8" ry="3" transform="rotate(-40 28 24)" fill="#ffffff" opacity="0.45"/>
+</svg>

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="240" viewBox="0 0 600 240">
+  <!-- Planches de bois chaleureuses pour la table de jeu -->
+  <defs>
+    <linearGradient id="plank1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#694025"/>
+      <stop offset="25%" stop-color="#553018"/>
+      <stop offset="70%" stop-color="#462510"/>
+      <stop offset="97%" stop-color="#361a09"/>
+      <stop offset="100%" stop-color="#1f0e04"/>
+    </linearGradient>
+    <linearGradient id="plank2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#73472a"/>
+      <stop offset="30%" stop-color="#5d351c"/>
+      <stop offset="75%" stop-color="#4c2913"/>
+      <stop offset="97%" stop-color="#3a1c09"/>
+      <stop offset="100%" stop-color="#1f0e04"/>
+    </linearGradient>
+    <linearGradient id="plank3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#633b20"/>
+      <stop offset="35%" stop-color="#502c15"/>
+      <stop offset="80%" stop-color="#40200c"/>
+      <stop offset="97%" stop-color="#301506"/>
+      <stop offset="100%" stop-color="#190a03"/>
+    </linearGradient>
+
+    <!-- Veinures subtiles de bois -->
+    <pattern id="grain" width="120" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 0 10 Q 30 12 60 9 T 120 11 M 0 24 Q 40 21 80 25 T 120 23"
+            stroke="#ffffff" stroke-opacity="0.04" stroke-width="1.2" fill="none"/>
+      <path d="M 0 5 Q 45 3 90 6 T 120 4 M 0 34 Q 35 36 75 33 T 120 35"
+            stroke="#000000" stroke-opacity="0.1" stroke-width="1.2" fill="none"/>
+    </pattern>
+  </defs>
+
+  <!-- Planche 1 (0 -> 80px) -->
+  <rect x="0" y="0" width="600" height="78" fill="url(#plank1)"/>
+  <rect x="0" y="0" width="600" height="78" fill="url(#grain)"/>
+  <!-- Chanfrein supérieur clair / rainure sombre -->
+  <line x1="0" y1="1" x2="600" y2="1" stroke="#8f5b38" stroke-width="1.2" opacity="0.6"/>
+  <rect x="0" y="78" width="600" height="2" fill="#150802"/>
+
+  <!-- Planche 2 (80 -> 160px) -->
+  <rect x="0" y="80" width="600" height="78" fill="url(#plank2)"/>
+  <rect x="0" y="80" width="600" height="78" fill="url(#grain)"/>
+  <line x1="0" y1="81" x2="600" y2="81" stroke="#99633e" stroke-width="1.2" opacity="0.65"/>
+  <rect x="0" y="158" width="600" height="2" fill="#150802"/>
+
+  <!-- Planche 3 (160 -> 240px) -->
+  <rect x="0" y="160" width="600" height="78" fill="url(#plank3)"/>
+  <rect x="0" y="160" width="600" height="78" fill="url(#grain)"/>
+  <line x1="0" y1="161" x2="600" y2="161" stroke="#875330" stroke-width="1.2" opacity="0.6"/>
+  <rect x="0" y="238" width="600" height="2" fill="#150802"/>
+</svg>

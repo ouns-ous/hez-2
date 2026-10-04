@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <!-- Avatar: Drishti (Right player - lightning storm / celestial sphere with electric blue vortex and golden ring) -->
+  <defs>
+    <linearGradient id="goldRimDrishti" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff2c2"/>
+      <stop offset="25%" stop-color="#d8a644"/>
+      <stop offset="60%" stop-color="#946519"/>
+      <stop offset="85%" stop-color="#f5cf73"/>
+      <stop offset="100%" stop-color="#5a3809"/>
+    </linearGradient>
+
+    <radialGradient id="stormBg" cx="45%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="25%" stop-color="#2563eb"/>
+      <stop offset="60%" stop-color="#1e293b"/>
+      <stop offset="90%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </radialGradient>
+
+    <linearGradient id="boltGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="50%" stop-color="#93c5fd"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Anneau extérieur or -->
+  <circle cx="50" cy="50" r="48" fill="url(#goldRimDrishti)"/>
+  <circle cx="50" cy="50" r="44" fill="#2d1d08"/>
+  <circle cx="50" cy="50" r="42" fill="url(#stormBg)"/>
+
+  <!-- Nébulose et nuages d'orage sombres -->
+  <path d="M 22 45 Q 32 30 48 35 Q 65 25 78 40 Q 82 58 70 70 Q 55 78 35 72 Q 18 65 22 45 Z"
+        fill="#172554" opacity="0.7"/>
+
+  <!-- Éclairs principaux (foudre intense) -->
+  <!-- Éclair central puissant -->
+  <path d="M 46 16 L 52 34 L 44 42 L 56 56 L 47 62 L 54 84"
+        stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M 46 16 L 52 34 L 44 42 L 56 56 L 47 62 L 54 84"
+        stroke="#60a5fa" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.65"/>
+
+  <!-- Ramification gauche -->
+  <path d="M 44 42 L 32 48 L 38 60 L 28 66"
+        stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M 44 42 L 32 48 L 38 60 L 28 66"
+        stroke="#93c5fd" stroke-width="4" stroke-linecap="round" opacity="0.5" fill="none"/>
+
+  <!-- Ramification droite -->
+  <path d="M 52 34 L 66 38 L 62 48 L 74 54"
+        stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M 52 34 L 66 38 L 62 48 L 74 54"
+        stroke="#93c5fd" stroke-width="4" stroke-linecap="round" opacity="0.5" fill="none"/>
+
+  <!-- Éclat central lumineux -->
+  <circle cx="50" cy="46" r="10" fill="#ffffff" opacity="0.8"/>
+  <circle cx="50" cy="46" r="18" fill="#38bdf8" opacity="0.35"/>
+
+  <!-- Éclat doré sur l'anneau -->
+  <ellipse cx="28" cy="24" rx="8" ry="3" transform="rotate(-40 28 24)" fill="#ffffff" opacity="0.45"/>
+</svg>

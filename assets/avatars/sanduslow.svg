@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <!-- Avatar: SanduSlow (Bottom human player - crowned king / warrior with golden ring) -->
+  <defs>
+    <linearGradient id="goldRimKing" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff2c2"/>
+      <stop offset="25%" stop-color="#d8a644"/>
+      <stop offset="60%" stop-color="#946519"/>
+      <stop offset="85%" stop-color="#f5cf73"/>
+      <stop offset="100%" stop-color="#5a3809"/>
+    </linearGradient>
+
+    <radialGradient id="kingBg" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#7f1d1d"/>
+      <stop offset="50%" stop-color="#450a0a"/>
+      <stop offset="85%" stop-color="#240505"/>
+      <stop offset="100%" stop-color="#120202"/>
+    </radialGradient>
+
+    <linearGradient id="crownGold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff6cc"/>
+      <stop offset="40%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+
+    <linearGradient id="capeRed" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="60%" stop-color="#b91c1c"/>
+      <stop offset="100%" stop-color="#7f1d1d"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Anneau extérieur or -->
+  <circle cx="50" cy="50" r="48" fill="url(#goldRimKing)"/>
+  <circle cx="50" cy="50" r="44" fill="#2d1d08"/>
+  <circle cx="50" cy="50" r="42" fill="url(#kingBg)"/>
+
+  <!-- Cape royale rouge foncé aux épaules -->
+  <path d="M 22 86 C 22 66 32 62 42 62 L 58 62 C 68 62 78 66 78 86 Z" fill="url(#capeRed)" stroke="#450a0a" stroke-width="1.2"/>
+  <path d="M 38 62 L 44 86 L 56 86 L 62 62 Z" fill="#d97706"/> <!-- Col doré / armure -->
+
+  <!-- Cou -->
+  <rect x="44" y="50" width="12" height="14" fill="#d49a70"/>
+
+  <!-- Tête / visage héroïque -->
+  <ellipse cx="50" cy="46" rx="12" ry="14" fill="#e8b28a"/>
+  <!-- Cheveux bruns sombres -->
+  <path d="M 36 44 C 35 32 42 28 50 28 C 58 28 65 32 64 44 C 61 40 56 38 50 38 C 44 38 39 40 36 44 Z" fill="#2d1808"/>
+  <path d="M 36 44 L 38 54 L 41 50 Z" fill="#2d1808"/>
+  <path d="M 64 44 L 62 54 L 59 50 Z" fill="#2d1808"/>
+
+  <!-- Yeux et expression décidée -->
+  <ellipse cx="45" cy="45" rx="2" ry="1.4" fill="#1f1105"/>
+  <ellipse cx="55" cy="45" rx="2" ry="1.4" fill="#1f1105"/>
+  <path d="M 43 42 L 48 43" stroke="#2d1808" stroke-width="1.2"/>
+  <path d="M 57 42 L 52 43" stroke="#2d1808" stroke-width="1.2"/>
+  <!-- Bouche -->
+  <path d="M 47 52 Q 50 54 53 52" stroke="#682915" stroke-width="1.2" fill="none"/>
+
+  <!-- Couronne d'or royale avec 5 pointes et gemmes rouges -->
+  <polygon points="34,34 38,22 44,28 50,18 56,28 62,22 66,34" fill="url(#crownGold)" stroke="#78350f" stroke-width="1.2"/>
+  <!-- Base bandeau couronne -->
+  <rect x="34" y="32" width="32" height="5" rx="1.5" fill="#d97706" stroke="#78350f" stroke-width="1"/>
+  <!-- Gemmes sur la couronne -->
+  <circle cx="50" cy="23" r="2.2" fill="#ef4444" stroke="#7f1d1d" stroke-width="0.8"/>
+  <circle cx="39" cy="26" r="1.6" fill="#3b82f6"/>
+  <circle cx="61" cy="26" r="1.6" fill="#3b82f6"/>
+  <circle cx="50" cy="34.5" r="1.5" fill="#ef4444"/>
+
+  <!-- Éclat doré sur l'anneau -->
+  <ellipse cx="28" cy="24" rx="8" ry="3" transform="rotate(-40 28 24)" fill="#ffffff" opacity="0.45"/>
+</svg>

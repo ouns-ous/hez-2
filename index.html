@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#4a2e1b" />
+<title>هز 2 · Hez 2 — الكارطة البلدية</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🃏</text></svg>" />
+</head>
+<body>
+
+<!-- Le tapis marocain brodé posé sur la table en bois -->
+<div class="felt" aria-hidden="true">
+  <img class="felt-decor" src="assets/table/teapot.svg" alt="Théière marocaine" />
+</div>
+
+<header class="topbar">
+  <!-- Boutons en bois façon jeu de cartes classique (Paramètres, Nouvelle partie, Historique) -->
+  <div class="topbar-left">
+    <button id="btnRules" class="btn-gear-wood" type="button" aria-label="القواعد" title="قواعد اللعبة والإعدادات"></button>
+    <button id="btnNew" class="btn btn-wood btn-icon" type="button" aria-label="لعبة جديدة" title="لعبة جديدة">🔄</button>
+    <button id="btnLog" class="btn btn-wood btn-icon" type="button" aria-label="الأحداث" title="سجل الأحداث">📜</button>
+  </div>
+
+  <div class="brand">
+    <span class="brand-cards">🃏</span>
+    <div>
+      <h1>هز 2</h1>
+      <p class="brand-sub">الكارطة البلدية</p>
+    </div>
+  </div>
+
+  <!-- Panneau de score parchemin avec bordure orné "Us / Them" -->
+  <div class="score" title="النتيجة">
+    <div class="score-cols">
+      <span class="score-col-name">Us <small>(نتا)</small></span>
+      <span class="score-col-name">Them <small>(خصومك)</small></span>
+    </div>
+    <div class="score-nums">
+      <div class="score-col score-us-box">
+        <span class="mini-score-card"></span>
+        <b id="scoreUs">0</b>
+      </div>
+      <span class="score-divider"></span>
+      <div class="score-col score-them-box">
+        <b id="scoreThem">0</b>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="app">
+
+  <section class="play-area">
+    <!-- Sièges des adversaires aux 4 coins (tl=Okan, tr=Kim, br=Drishti) -->
+    <div id="opponents" class="seats"></div>
+
+    <!-- Siège du joueur humain au coin bas-gauche (SanduSlow) -->
+    <div id="mySeat" class="seat seat-bl">
+      <div id="myAvatar" class="avatar avatar-sanduslow"></div>
+      <div id="myName" class="seat-name">SanduSlow · <span id="handCount">0</span></div>
+    </div>
+
+    <!-- Bulle de dialogue style comic (Missa !, Carta !, هز 2, سكيب…) -->
+    <div id="bubble" class="hidden"></div>
+
+    <!-- Pioche à droite + Talon au milieu -->
+    <div class="board">
+      <div class="pile draw-pile" id="drawPile" role="button" tabindex="0" aria-label="سحب ورقة" title="اضغط للسحب">
+        <div class="card card-back"></div>
+        <span class="pile-count" id="drawCount">0</span>
+        <span class="pile-label">سحب</span>
+      </div>
+
+      <div class="center">
+        <div id="discardTop" class="discard"></div>
+        <div class="chips">
+          <span id="suitChip" class="chip chip-suit">—</span>
+          <span id="pendingChip" class="chip chip-pending hidden">هز 0</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="turn-box"><span id="turnLabel" class="turn-label">—</span></div>
+  </section>
+
+  <section class="hand-section">
+    <div class="hand-row">
+      <div id="hand" class="hand"></div>
+
+      <!-- les boutons, sur la même ligne que tes cartes -->
+      <section class="actions" id="actions"></section>
+    </div>
+  </section>
+
+</main>
+
+<!-- Journal des événements -->
+<div id="logModal" class="overlay hidden">
+  <div class="sheet">
+    <h2>📜 الأحداث</h2>
+    <ul id="log" class="log"></ul>
+    <div class="sheet-actions">
+      <button id="btnCloseLog" class="btn btn-ghost" type="button">سدّ</button>
+    </div>
+  </div>
+</div>
+
+<!-- Choix de la couleur après un 7 -->
+<div id="suitPicker" class="overlay hidden">
+  <div class="sheet">
+    <h2>اختار الساري (السيّار)</h2>
+    <p class="muted">لعبتي 7 — اختار النوع اللي بغيتي اللعب يكمل بيه</p>
+    <div class="suit-grid" id="suitGrid"></div>
+  </div>
+</div>
+
+<!-- Règles / variantes -->
+<div id="rulesModal" class="overlay hidden">
+  <div class="sheet sheet-tall">
+    <h2>⚙️ قواعد الدار</h2>
+    <p class="muted">كل قنت كيلعب بقواعدو — بدّل هنا، وكيتسجل فهاد الجهاز.</p>
+
+    <div class="rules-block">
+      <div class="rules-block-title">الجوجور (variant)</div>
+      <div class="preset-row" id="presetRow"></div>
+    </div>
+
+    <div class="rules-block">
+      <div class="rules-block-title">اللاعبين</div>
+      <div class="preset-row" id="playerRow">
+        <button class="btn btn-preset" data-players="2" type="button">2 لاعبين</button>
+        <button class="btn btn-preset" data-players="4" type="button">4 لاعبين</button>
+      </div>
+    </div>
+
+    <div class="rules-block">
+      <div class="rules-block-title">قواعد عامة</div>
+      <label class="check"><input type="checkbox" id="r_stackTwos" /> <span>2 على 2 = هز 4، هز 6… (cumul)</span></label>
+      <label class="check"><input type="checkbox" id="r_sevenChangesSuit" /> <span>7 (السيّار) كيبدّل الساري</span></label>
+      <label class="check"><input type="checkbox" id="r_tenSkips" /> <span>10 (Sota) كيسكيب</span></label>
+      <label class="check"><input type="checkbox" id="r_playAfterDraw" /> <span>من بعد السحب، تقدر تلعب الورقة الجديدة</span></label>
+      <label class="check"><input type="checkbox" id="r_cartaRule" /> <span>خاصك تقول «Carta!» ملي تبقالك ورقة وحدة</span></label>
+    </div>
+
+    <div class="rules-block">
+      <div class="rules-block-title">الـ 1 (تبق / طبع)</div>
+      <div class="one-row">
+        <span class="one-suit"><span class="suit-dot" style="background:#e8b21f"></span>1 الفلوس</span>
+        <select id="one_dhab_draw">
+          <option value="0">عادي</option>
+          <option value="2">يهز 2</option>
+          <option value="5">يهز 5</option>
+        </select>
+        <label class="check check-inline"><input type="checkbox" id="one_dhab_skip" /> <span>سكيب</span></label>
+      </div>
+      <div class="one-row">
+        <span class="one-suit"><span class="suit-dot" style="background:#2f9e5f"></span>1 الزراوط</span>
+        <select id="one_zrawet_draw">
+          <option value="0">عادي</option>
+          <option value="2">يهز 2</option>
+          <option value="5">يهز 5</option>
+        </select>
+        <label class="check check-inline"><input type="checkbox" id="one_zrawet_skip" /> <span>سكيب</span></label>
+      </div>
+      <div class="one-row">
+        <span class="one-suit"><span class="suit-dot" style="background:#3d7bd6"></span>1 السيوف</span>
+        <select id="one_syouf_draw">
+          <option value="0">عادي</option>
+          <option value="2">يهز 2</option>
+          <option value="5">يهز 5</option>
+        </select>
+        <label class="check check-inline"><input type="checkbox" id="one_syouf_skip" /> <span>سكيب</span></label>
+      </div>
+      <div class="one-row">
+        <span class="one-suit"><span class="suit-dot" style="background:#d64545"></span>1 جْبن</span>
+        <select id="one_kass_draw">
+          <option value="0">عادي</option>
+          <option value="2">يهز 2</option>
+          <option value="5">يهز 5</option>
+        </select>
+        <label class="check check-inline"><input type="checkbox" id="one_kass_skip" /> <span>سكيب</span></label>
+      </div>
+    </div>
+
+    <div class="sheet-actions">
+      <button id="btnSaveRules" class="btn btn-primary" type="button">💾 سجّل وابدا</button>
+      <button id="btnDefaults" class="btn btn-ghost" type="button">↩️ الأصلي</button>
+      <button id="btnCloseRules" class="btn btn-ghost" type="button">سدّ</button>
+    </div>
+  </div>
+</div>
+
+<!-- Fin de partie -->
+<div id="winModal" class="overlay hidden">
+  <div class="sheet">
+    <h2 id="winTitle">🏆</h2>
+    <p class="muted" id="winSub"></p>
+    <div class="sheet-actions">
+      <button id="btnWinNew" class="btn btn-primary" type="button">🔄 لعبة جديدة</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/deck.js"></script>
+<script src="js/rules.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/ai.js"></script>
+<script src="js/assets.js"></script>
+<script src="js/ui.js"></script>
+</body>
+</html>
