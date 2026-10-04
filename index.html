@@ -18,6 +18,7 @@
 <header class="topbar">
   <!-- Boutons en bois façon jeu de cartes classique (Paramètres, Nouvelle partie, Historique) -->
   <div class="topbar-left">
+    <button id="btnHome" class="btn btn-wood btn-icon" type="button" aria-label="الرئيسية" title="الصفحة الرئيسية">🏠</button>
     <button id="btnRules" class="btn-gear-wood" type="button" aria-label="القواعد" title="قواعد اللعبة والإعدادات"></button>
     <button id="btnNew" class="btn btn-wood btn-icon" type="button" aria-label="لعبة جديدة" title="لعبة جديدة">🔄</button>
     <button id="btnLog" class="btn btn-wood btn-icon" type="button" aria-label="الأحداث" title="سجل الأحداث">📜</button>
@@ -95,6 +96,81 @@
   </section>
 
 </main>
+
+<!-- الصفحة الرئيسية (Accueil) -->
+<div id="homeScreen" class="home-screen">
+  <div class="home-felt">
+    <!-- Filigrane d'arabesque marocaine -->
+    <div class="home-decor" aria-hidden="true"></div>
+
+    <header class="home-header">
+      <div class="home-badge">
+        <span class="home-badge-icon">🃏</span>
+      </div>
+      <h1 class="home-title">هز 2</h1>
+      <p class="home-sub">الكارطة البلدية المغربية</p>
+      <div class="home-tagline">أجواء القهوة الشعبية والكارطة التقليدية</div>
+    </header>
+
+    <!-- Éventail décoratif de cartes réelles marocaines au centre -->
+    <div class="home-fan" aria-hidden="true">
+      <div class="home-fan-card fan-1"><img src="assets/cards/syouf-10.svg" alt="10 السيوف" /></div>
+      <div class="home-fan-card fan-2"><img src="assets/cards/kass-11.svg" alt="11 الكاس" /></div>
+      <div class="home-fan-card fan-3"><img src="assets/cards/dhab-7.svg" alt="7 الذهب - السيار" /></div>
+      <div class="home-fan-card fan-4"><img src="assets/cards/zrawet-2.svg" alt="2 الزراوط - هز 2" /></div>
+      <div class="home-fan-card fan-5"><img src="assets/cards/dhab-1.svg" alt="1 الذهب - طبع" /></div>
+    </div>
+
+    <!-- Choix du mode de jeu (2 ou 4 joueurs) -->
+    <div class="home-modes-box">
+      <span class="home-modes-label">اختار شحال من لعّاب:</span>
+      <div class="home-modes">
+        <button id="btnMode2" class="btn-mode is-active" type="button">
+          <span class="mode-icon">⚡</span>
+          <span class="mode-title">2 لاعبين</span>
+          <span class="mode-sub">1 ضد 1</span>
+        </button>
+        <button id="btnMode4" class="btn-mode" type="button">
+          <span class="mode-icon">👥</span>
+          <span class="mode-title">4 لاعبين</span>
+          <span class="mode-sub">الطبلة كاملة</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Bouton principal d'action : ابدا اللعب -->
+    <div class="home-cta">
+      <button id="btnPlayNow" class="btn-play-big" type="button">
+        <span class="btn-play-pulse"></span>
+        <span class="btn-play-content">
+          <span class="btn-play-icon">🎮</span>
+          <span class="btn-play-title">ابدا اللعب</span>
+        </span>
+      </button>
+    </div>
+
+    <!-- Actions secondaires : قواعد، سجل، معاينة -->
+    <div class="home-actions">
+      <button id="btnHomeRules" class="btn btn-wood" type="button">⚙️ قواعد الدار</button>
+      <button id="btnHomeLog" class="btn btn-wood" type="button">📜 سجل النتائج</button>
+      <a href="preview.html" class="btn btn-wood btn-link" target="_blank" rel="noopener">🃏 معاينة الكارطات</a>
+    </div>
+
+    <!-- Statistiques de session -->
+    <div class="home-stats" title="سجل مواجهات هاد الجلسة">
+      <span class="home-stats-label">النتيجة فهاد الجلسة:</span>
+      <div class="home-stats-badges">
+        <span class="home-stat-chip chip-us">Us (نتا): <b id="homeScoreUs">0</b></span>
+        <span class="home-stat-vs">VS</span>
+        <span class="home-stat-chip chip-them">Them (خصومك): <b id="homeScoreThem">0</b></span>
+      </div>
+    </div>
+
+    <footer class="home-footer">
+      <span>صُنعت بشغف · لعبة مغربية أصلية</span>
+    </footer>
+  </div>
+</div>
 
 <!-- Journal des événements -->
 <div id="logModal" class="overlay hidden">

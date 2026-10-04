@@ -78,6 +78,9 @@
     var us = $('scoreUs'), them = $('scoreThem');
     if (us) us.textContent = String(wins.us);
     if (them) them.textContent = String(wins.them);
+    var homeUs = $('homeScoreUs'), homeThem = $('homeScoreThem');
+    if (homeUs) homeUs.textContent = String(wins.us);
+    if (homeThem) homeThem.textContent = String(wins.them);
   }
 
   // Une image vient d'arriver (ou a échoué) : on redessine une seule fois.
@@ -635,6 +638,35 @@
     ['suitPicker', 'rulesModal', 'winModal', 'logModal'].forEach(hideOverlay);
   }
 
+  // ------------------------------------------------------------- page d'accueil
+  function updateHomeUi() {
+    var b2 = $('btnMode2'), b4 = $('btnMode4');
+    if (b2) b2.classList.toggle('is-active', playerCount === 2);
+    if (b4) b4.classList.toggle('is-active', playerCount === 4);
+    var playBtn = $('btnPlayNow');
+    if (playBtn) {
+      var titleEl = playBtn.querySelector('.btn-play-title');
+      var isOngoing = state && !state.over && state.players.length === playerCount;
+      if (titleEl) {
+        titleEl.textContent = isOngoing ? 'كمّل اللعب' : 'ابدا اللعب';
+      }
+    }
+    renderScore();
+  }
+
+  function showHomeScreen() {
+    var home = $('homeScreen');
+    if (!home) return;
+    home.classList.remove('hidden');
+    updateHomeUi();
+  }
+
+  function hideHomeScreen() {
+    var home = $('homeScreen');
+    if (!home) return;
+    home.classList.add('hidden');
+  }
+
   function openSuitPicker(cb) {
     suitPickerCb = cb;
     var grid = $('suitGrid');
@@ -748,6 +780,42 @@
       newGame(r.players);
     });
 
+    // Boutons de la page d'accueil
+    if ($('btnHome')) {
+      $('btnHome').addEventListener('click', showHomeScreen);
+    }
+    if ($('btnPlayNow')) {
+      $('btnPlayNow').addEventListener('click', function () {
+        hideHomeScreen();
+        if (!state || state.over || state.players.length !== playerCount) {
+          newGame(playerCount);
+        }
+      });
+    }
+    if ($('btnMode2')) {
+      $('btnMode2').addEventListener('click', function () {
+        playerCount = 2;
+        markActivePlayers(2);
+        updateHomeUi();
+      });
+    }
+    if ($('btnMode4')) {
+      $('btnMode4').addEventListener('click', function () {
+        playerCount = 4;
+        markActivePlayers(4);
+        updateHomeUi();
+      });
+    }
+    if ($('btnHomeRules')) {
+      $('btnHomeRules').addEventListener('click', openRules);
+    }
+    if ($('btnHomeLog')) {
+      $('btnHomeLog').addEventListener('click', function () {
+        renderLog();
+        showOverlay('logModal');
+      });
+    }
+
     var pile = $('drawPile');
     pile.addEventListener('click', onDrawClick);
     pile.addEventListener('keydown', function (e) {
@@ -758,12 +826,14 @@
       b.addEventListener('click', function () {
         playerCount = Number(b.getAttribute('data-players')) === 4 ? 4 : 2;
         markActivePlayers(playerCount);
+        updateHomeUi();
       });
     });
 
     var initR = Rules.load();
     playerCount = initR.players || 2;
     newGame(playerCount);
+    showHomeScreen();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
