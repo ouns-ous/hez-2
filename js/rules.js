@@ -4,7 +4,7 @@
 (function (global) {
   'use strict';
 
-  var STORAGE_KEY = 'hez2.rules.v1';
+  var STORAGE_KEY = 'hez2.rules.v2';
 
   // Preset B (recommandé) : chaque 1 a son propre effet.
   //   1 الذهب  = le joueur suivant pioche 5 et perd son tour

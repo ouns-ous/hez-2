@@ -776,8 +776,11 @@
     $('btnSaveRules').addEventListener('click', function () {
       var r = readRulesFromForm();
       Rules.save(r);
+      playerCount = r.players;
       hideOverlay('rulesModal');
+      hideHomeScreen();
       newGame(r.players);
+      updateHomeUi();
     });
 
     // Boutons de la page d'accueil
