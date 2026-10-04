@@ -293,32 +293,32 @@ body {
 /* ---------- SIÈGES AUX 4 COINS DE LA TABLE (4 CORNERS) ---------- */
 .seats { position: absolute; inset: 0; pointer-events: none; }
 .seat {
-  position: absolute; display: flex; flex-direction: column; gap: 4px;
+  position: absolute; display: flex; flex-direction: row; align-items: center; gap: 7px;
   pointer-events: auto; z-index: 5;
 }
 
 /* Coin haut-gauche (Okan / Joueur 4) */
 .seat-tl, .seat-left {
   top: 14px; left: 16px;
-  align-items: flex-start;
+  flex-direction: row-reverse;
 }
 
 /* Coin haut-droite (Kim / Joueur 2) */
 .seat-tr, .seat-right {
   top: 14px; right: 16px;
-  align-items: flex-end;
+  flex-direction: row;
 }
 
 /* Coin bas-droite (Drishti / Joueur 1) */
 .seat-br {
   bottom: 84px; right: 16px;
-  align-items: flex-end;
+  flex-direction: row;
 }
 
 /* Coin bas-gauche (SanduSlow / Joueur humain) */
 .seat-bl {
   bottom: 84px; left: 16px;
-  align-items: flex-start;
+  flex-direction: row-reverse;
   z-index: 10;
 }
 
@@ -381,7 +381,7 @@ body {
 .seat-name {
   font-size: 12px; font-weight: 800; letter-spacing: .3px;
   color: #2b1706;
-  padding: 3px 14px; border-radius: 8px; white-space: nowrap;
+  padding: 4px 14px; border-radius: 999px; white-space: nowrap;
   background:
     linear-gradient(180deg, #fef5e1 0%, #fae6be 60%, #edd49f 100%),
     linear-gradient(180deg, #96602c, #5e3517);
