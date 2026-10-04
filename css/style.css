@@ -20,17 +20,17 @@
   --orn: rgba(240, 210, 150, .30);
 
   /* ratio réel des cartes : 141.7 x 226.8 (0.625) */
-  --card-w: 64px;
-  --card-h: 102px;
+  --card-w: 68px;
+  --card-h: 109px;
   /* TES cartes sont plus grandes que celles de la table */
   --hand-scale: 1.75;
-  --hand-w: min(calc(var(--card-w) * var(--hand-scale)), 108px);
+  --hand-w: min(calc(var(--card-w) * var(--hand-scale)), 116px);
   --hand-h: calc(var(--hand-w) / 0.625);
   /* dos de carte fourni par l'utilisateur (même ratio que les cartes) */
   --card-back-img: url("../assets/cards/back.png");
   /* cartes des adversaires : un peu plus petites que celles de la table */
-  --opp-w: calc(var(--card-w) * 0.78);
-  --opp-h: calc(var(--card-h) * 0.78);
+  --opp-w: calc(var(--card-w) * 0.86);
+  --opp-h: calc(var(--card-h) * 0.86);
   --top-ui: calc(var(--opp-h) + 64px);    /* place pour le siège du haut */
   /* hauteur du bloc du bas (tête + boutons + éventail) : le tapis s'arrête là */
   --bottom-ui: calc(var(--hand-h) + 86px);

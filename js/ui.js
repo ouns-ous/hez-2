@@ -78,9 +78,6 @@
     var us = $('scoreUs'), them = $('scoreThem');
     if (us) us.textContent = String(wins.us);
     if (them) them.textContent = String(wins.them);
-    var homeUs = $('homeScoreUs'), homeThem = $('homeScoreThem');
-    if (homeUs) homeUs.textContent = String(wins.us);
-    if (homeThem) homeThem.textContent = String(wins.them);
   }
 
   // Une image vient d'arriver (ou a échoué) : on redessine une seule fois.
@@ -368,7 +365,7 @@
     seatByPlayer[me] = 'bl';
 
     // Place les adversaires aux coins du tapis (br = Drishti, tr = Kim, tl = Okan)
-    var seats = others.length === 1 ? ['top']
+    var seats = others.length === 1 ? ['tr']
       : others.length === 2 ? ['tr', 'tl']
         : ['br', 'tr', 'tl'];
 
