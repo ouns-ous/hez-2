@@ -174,7 +174,6 @@
     scoreCounted = false;
     closeOverlays();
     render();
-    showBubble(0, 'Missa !', 2200);
     scheduleAI();
   }
 
@@ -460,6 +459,12 @@
     });
 
     $('drawCount').textContent = String(state.drawPile.length);
+    var pileEl = $('drawPile');
+    if (pileEl) {
+      var mustDraw = isHumanTurn() && (state.pendingDraw > 0 || (!state.drewThisTurn && Engine.playableIndices(state, humanIndex()).length === 0));
+      if (mustDraw) pileEl.classList.add('pulse-pile');
+      else pileEl.classList.remove('pulse-pile');
+    }
 
     var suit = Deck.suitById(state.currentSuit);
     var chip = $('suitChip');
@@ -582,7 +587,7 @@
     }
 
     if (state.pendingDraw > 0) {
-      var bp = make('button', 'btn btn-danger' + (isHumanTurn() ? ' pulse' : ''), '😵 هز ' + state.pendingDraw);
+      var bp = make('button', 'btn btn-danger' + (isHumanTurn() ? ' pulse-draw' : ''), '😵 هز ' + state.pendingDraw);
       bp.type = 'button';
       bp.disabled = !isHumanTurn();
       bp.addEventListener('click', resolveHumanPending);
@@ -591,7 +596,7 @@
       // Toujours visible : grisé quand il ne sert pas.
       var canDraw = isHumanTurn() && !state.drewThisTurn &&
         Engine.playableIndices(state, humanIndex()).length === 0;
-      var hint = make('button', 'btn btn-primary', '👋 سحب ورقة');
+      var hint = make('button', 'btn btn-primary' + (canDraw ? ' pulse-draw' : ''), '👋 سحب ورقة');
       hint.type = 'button';
       hint.disabled = !canDraw;
       hint.title = canDraw ? '' : (isHumanTurn() ? 'عندك ورقة كتقدر تلعب' : 'ماشي دورك');
