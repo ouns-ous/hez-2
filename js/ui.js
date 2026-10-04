@@ -462,8 +462,8 @@
     var pileEl = $('drawPile');
     if (pileEl) {
       var mustDraw = isHumanTurn() && (state.pendingDraw > 0 || (!state.drewThisTurn && Engine.playableIndices(state, humanIndex()).length === 0));
-      if (mustDraw) pileEl.classList.add('pulse-pile');
-      else pileEl.classList.remove('pulse-pile');
+      if (mustDraw) pileEl.classList.add('anim-tilt');
+      else pileEl.classList.remove('anim-tilt');
     }
 
     var suit = Deck.suitById(state.currentSuit);
@@ -587,19 +587,22 @@
     }
 
     if (state.pendingDraw > 0) {
-      var bp = make('button', 'btn btn-danger' + (isHumanTurn() ? ' pulse-draw' : ''), '😵 هز ' + state.pendingDraw);
+      var bp = make('button', 'btn btn-danger' + (isHumanTurn() ? ' anim-tilt' : ''), '😵 هز ' + state.pendingDraw);
       bp.type = 'button';
       bp.disabled = !isHumanTurn();
       bp.addEventListener('click', resolveHumanPending);
       host.appendChild(bp);
     } else {
-      // Toujours visible : grisé quand il ne sert pas.
-      var canDraw = isHumanTurn() && !state.drewThisTurn &&
-        Engine.playableIndices(state, humanIndex()).length === 0;
-      var hint = make('button', 'btn btn-primary' + (canDraw ? ' pulse-draw' : ''), '👋 سحب ورقة');
+      // Le joueur peut TOUJOURS piocher à son tour au lieu de jouer.
+      var canDraw = isHumanTurn() && !state.drewThisTurn;
+      // Animation katmil (tangage) seulement quand le tirage est obligatoire (aucune carte jouable).
+      var mustDraw = canDraw && Engine.playableIndices(state, humanIndex()).length === 0;
+
+      var cls = 'btn btn-primary' + (mustDraw ? ' anim-tilt' : '');
+      var hint = make('button', cls, '👋 سحب ورقة');
       hint.type = 'button';
       hint.disabled = !canDraw;
-      hint.title = canDraw ? '' : (isHumanTurn() ? 'عندك ورقة كتقدر تلعب' : 'ماشي دورك');
+      hint.title = canDraw ? (mustDraw ? 'خاصك تسحب ورقة' : 'تقدر تسحب ورقة بلاصت ما تلعب') : (isHumanTurn() ? 'سحبتي فهاد الدور' : 'ماشي دورك');
       hint.addEventListener('click', onDrawClick);
       host.appendChild(hint);
     }
@@ -758,7 +761,9 @@
       });
     });
 
-    newGame(4);
+    var initR = Rules.load();
+    playerCount = initR.players || 2;
+    newGame(playerCount);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);

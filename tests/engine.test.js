@@ -148,9 +148,10 @@ group('Effet du 1 الذهب (pioche 5 + skip)');
   eq(st.pendingDraw, 0, 'pas de hez en attente');
 })();
 
-group('Effet du 1 الزراوط (skip, preset B)');
+group('Effet du 1 الزراوط (skip, si activé)');
 (function () {
-  var st = fixture({ top: { suit: 'zrawet', rank: 4 }, hands: [[{ suit: 'zrawet', rank: 1 }, { suit: 'zrawet', rank: 5 }], [], []], turn: 0 });
+  var b = { ones: { zrawet: { draw: 0, skip: true } } };
+  var st = fixture({ rules: b, top: { suit: 'zrawet', rank: 4 }, hands: [[{ suit: 'zrawet', rank: 1 }, { suit: 'zrawet', rank: 5 }], [], []], turn: 0 });
   var r = Engine.playCard(st, 0);
   ok(r.ok, 'le 1 Zrawet se pose');
   eq(st.turn, 2, 'le suivant est sauté');

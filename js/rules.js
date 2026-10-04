@@ -14,17 +14,17 @@
     return {
       players: 2,
       handSize: 4,
-      playAfterDraw: true,   // après avoir pioché, si la carte est jouable tu peux la poser
+      playAfterDraw: false,   // après avoir pioché, le tour passe (décoché)
       stackTwos: true,       // 2 sur 2 → hez 4, hez 6…
       sevenChangesSuit: true,// le 7 (السيّار) change la couleur
       tenSkips: true,        // le 10 (Sota) skip
       ones: {
         dhab:   { draw: 5, skip: true },
-        zrawet: { draw: 0, skip: true },
+        zrawet: { draw: 0, skip: false },
         syouf:  { draw: 0, skip: false },
         kass:   { draw: 0, skip: false }
       },
-      cartaRule: true,       // dire « Carta ! » quand il ne reste qu'une carte
+      cartaRule: false,      // désactivé par défaut
       cartaPenalty: 2,       // sinon tu pioches 2
       aiForgetsCarta: 0.15   // l'IA oublie de dire Carta 15 % du temps
     };
@@ -33,6 +33,7 @@
   // Preset A : tous les 1 skippent, et en plus le 1 الذهب fait piocher 5.
   function presetA() {
     var r = presetB();
+    r.ones.zrawet.skip = true;
     r.ones.syouf.skip = true;
     r.ones.kass.skip = true;
     return r;
@@ -44,7 +45,7 @@
     r.ones = {
       dhab:   { draw: 0, skip: false },
       zrawet: { draw: 0, skip: false },
-      soyouf:  { draw: 0, skip: false },
+      syouf:  { draw: 0, skip: false },
       kass:   { draw: 0, skip: false }
     };
     return r;
