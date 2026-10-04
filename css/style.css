@@ -469,7 +469,7 @@ body {
 #bubble.bubble-tr::after { top: -18px; right: 24px; border-bottom-color: #ffffff; border-top: 0; }
 #bubble.bubble-br { bottom: 86px; right: 24px; }
 #bubble.bubble-br::after { bottom: -18px; right: 24px; border-top-color: #ffffff; border-bottom: 0; }
-#bubble.bubble-bl { bottom: 156px; left: 24px; }
+#bubble.bubble-bl { bottom: 226px; left: 24px; }
 #bubble.bubble-bl::after { bottom: -18px; left: 24px; border-top-color: #ffffff; border-bottom: 0; }
 
 #bubble.bubble-top { top: calc(var(--top-ui) - 8px); left: 50%; transform: translateX(-50%); }
@@ -595,6 +595,7 @@ body {
   display: flex; flex-wrap: wrap; gap: 6px;
   justify-content: flex-start; align-items: flex-end;
   padding: 0;
+  transform: translateY(-116px);
 }
 .actions .btn { font-size: 16px; padding: 14px 18px; border-radius: 12px; }
 .wait-label {
