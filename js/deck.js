@@ -7,10 +7,10 @@
   // الـ id كيبقا ثابت (dhab/kass/syouf/zrawet) — الاسم اللي كيبان هو اللي كيتبدل.
   // رموز قديمة (Emoji 1.0) باش يبانو ف كل الأنظمة — الرموز الجداد كيخرجو مربعين.
   var SUITS = [
-    { id: 'dhab',   ar: 'الفلوس',  fr: 'Dhab (pièces)',  emoji: '💰', color: '#e8b21f', aliases: ['الذهب', 'الفلوس', 'فلوس', 'flous', 'fls'] },
-    { id: 'kass',   ar: 'جْبن',    fr: 'Kass / Jben (coupes)', emoji: '🍷', color: '#d64545', aliases: ['جبن', 'الكأس', 'الكيسان', 'كاس', 'jben', 'jban', 'kass'] },
-    { id: 'syouf',  ar: 'السيوف',  fr: 'Syouf (épées)',  emoji: '⚔️', color: '#3d7bd6', aliases: ['السيوف', 'سيوف'] },
-    { id: 'zrawet', ar: 'الزراوط', fr: 'Zrawet (bâtons)', emoji: '🌳', color: '#2f9e5f', aliases: ['الزراوط', 'الزرابيط', 'العصي'] }
+    { id: 'dhab',   ar: 'الفلوس',  fr: 'Dhab (pièces)',  emoji: '', color: '#e8b21f', aliases: ['الذهب', 'الفلوس', 'فلوس', 'flous', 'fls'] },
+    { id: 'kass',   ar: 'جْبن',    fr: 'Kass / Jben (coupes)', emoji: '', color: '#d64545', aliases: ['جبن', 'الكأس', 'الكيسان', 'كاس', 'jben', 'jban', 'kass'] },
+    { id: 'syouf',  ar: 'السيوف',  fr: 'Syouf (épées)',  emoji: '', color: '#3d7bd6', aliases: ['السيوف', 'سيوف'] },
+    { id: 'zrawet', ar: 'الزراوط', fr: 'Zrawet (bâtons)', emoji: '', color: '#2f9e5f', aliases: ['الزراوط', 'الزرابيط', 'العصي'] }
   ];
 
   // Pas de 8 ni 9 dans la carte espagnole : 10 = Sota, 11 = Caballo, 12 = Rey

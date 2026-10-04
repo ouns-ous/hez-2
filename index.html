@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#4a2e1b" />
 <title>هز 2 · Hez 2 — الكارطة البلدية</title>
 <link rel="stylesheet" href="css/style.css" />
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🃏</text></svg>" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='70' height='90' x='15' y='5' rx='10' fill='%23ffffff' stroke='%23e8b21f' stroke-width='6'/><circle cx='50' cy='50' r='18' fill='%23e8b21f'/></svg>" />
 </head>
 <body>
 
@@ -25,7 +25,6 @@
   </div>
 
   <div class="brand">
-    <span class="brand-cards">🃏</span>
     <div>
       <h1>هز 2</h1>
       <p class="brand-sub">الكارطة البلدية</p>
@@ -75,6 +74,7 @@
       </div>
 
       <div class="center">
+        <div class="turn-box"><span id="turnLabel" class="turn-label">—</span></div>
         <div id="discardTop" class="discard"></div>
         <div class="chips">
           <span id="suitChip" class="chip chip-suit">—</span>
@@ -82,8 +82,6 @@
         </div>
       </div>
     </div>
-
-    <div class="turn-box"><span id="turnLabel" class="turn-label">—</span></div>
   </section>
 
   <section class="hand-section">
@@ -105,7 +103,16 @@
 
     <header class="home-header">
       <div class="home-badge">
-        <span class="home-badge-icon">🃏</span>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z" fill="url(#goldStarGrad)" stroke="#6e4609" stroke-width="1"/>
+          <defs>
+            <linearGradient id="goldStarGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#fff5cf"/>
+              <stop offset="50%" stop-color="#f5cd69"/>
+              <stop offset="100%" stop-color="#b8832a"/>
+            </linearGradient>
+          </defs>
+        </svg>
       </div>
       <h1 class="home-title">هز 2</h1>
       <p class="home-sub">الكارطة البلدية المغربية</p>
@@ -126,12 +133,10 @@
       <span class="home-modes-label">اختار شحال من لعّاب:</span>
       <div class="home-modes">
         <button id="btnMode2" class="btn-mode is-active" type="button">
-          <span class="mode-icon">⚡</span>
           <span class="mode-title">2 لاعبين</span>
           <span class="mode-sub">1 ضد 1</span>
         </button>
         <button id="btnMode4" class="btn-mode" type="button">
-          <span class="mode-icon">👥</span>
           <span class="mode-title">4 لاعبين</span>
           <span class="mode-sub">الطبلة كاملة</span>
         </button>
@@ -143,7 +148,6 @@
       <button id="btnPlayNow" class="btn-play-big" type="button">
         <span class="btn-play-pulse"></span>
         <span class="btn-play-content">
-          <span class="btn-play-icon">🎮</span>
           <span class="btn-play-title">ابدا اللعب</span>
         </span>
       </button>
@@ -151,9 +155,9 @@
 
     <!-- Actions secondaires : قواعد، سجل، معاينة -->
     <div class="home-actions">
-      <button id="btnHomeRules" class="btn btn-wood" type="button">⚙️ قواعد الدار</button>
-      <button id="btnHomeLog" class="btn btn-wood" type="button">📜 سجل النتائج</button>
-      <a href="preview.html" class="btn btn-wood btn-link" target="_blank" rel="noopener">🃏 معاينة الكارطات</a>
+      <button id="btnHomeRules" class="btn btn-wood" type="button">قواعد الدار</button>
+      <button id="btnHomeLog" class="btn btn-wood" type="button">سجل النتائج</button>
+      <a href="preview.html" class="btn btn-wood btn-link" target="_blank" rel="noopener">معاينة الكارطات</a>
     </div>
 
     <!-- Statistiques de session -->
@@ -175,7 +179,7 @@
 <!-- Journal des événements -->
 <div id="logModal" class="overlay hidden">
   <div class="sheet">
-    <h2>📜 الأحداث</h2>
+    <h2>سجل الأحداث</h2>
     <ul id="log" class="log"></ul>
     <div class="sheet-actions">
       <button id="btnCloseLog" class="btn btn-ghost" type="button">سدّ</button>
@@ -195,7 +199,7 @@
 <!-- Règles / variantes -->
 <div id="rulesModal" class="overlay hidden">
   <div class="sheet sheet-tall">
-    <h2>⚙️ قواعد الدار</h2>
+    <h2>قواعد الدار</h2>
     <p class="muted">كل قنت كيلعب بقواعدو — بدّل هنا، وكيتسجل فهاد الجهاز.</p>
 
     <div class="rules-block">
@@ -261,8 +265,8 @@
     </div>
 
     <div class="sheet-actions">
-      <button id="btnSaveRules" class="btn btn-primary" type="button">💾 سجّل وابدا</button>
-      <button id="btnDefaults" class="btn btn-ghost" type="button">↩️ الأصلي</button>
+      <button id="btnSaveRules" class="btn btn-primary" type="button">سجّل وابدا</button>
+      <button id="btnDefaults" class="btn btn-ghost" type="button">الأصلي</button>
       <button id="btnCloseRules" class="btn btn-ghost" type="button">سدّ</button>
     </div>
   </div>
@@ -271,10 +275,10 @@
 <!-- Fin de partie -->
 <div id="winModal" class="overlay hidden">
   <div class="sheet">
-    <h2 id="winTitle">🏆</h2>
+    <h2 id="winTitle">نهاية الطرح</h2>
     <p class="muted" id="winSub"></p>
     <div class="sheet-actions">
-      <button id="btnWinNew" class="btn btn-primary" type="button">🔄 لعبة جديدة</button>
+      <button id="btnWinNew" class="btn btn-primary" type="button">لعبة جديدة</button>
     </div>
   </div>
 </div>

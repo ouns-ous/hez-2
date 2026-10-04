@@ -30,7 +30,7 @@
     var top = state.discard.pop();
     state.drawPile = Deck.shuffle(state.discard.splice(0, state.discard.length), state.rng);
     state.discard.push(top);
-    state.log.push('♻️ خلّطنا الورق وولّى من جديد');
+    state.log.push('خلّطنا الورق ورجع للصندوق');
     return state.drawPile.length > 0;
   }
 
@@ -108,7 +108,7 @@
     state.discard.push(starter);
     state.currentSuit = starter.suit;
 
-    state.log.push('🎴 بدات اللعبة — ' + n + ' لاعبين، ' + rules.handSize + ' ورقات لكل واحد');
+    state.log.push('بدات اللعبة — ' + n + ' لاعبين، ' + rules.handSize + ' ورقات لكل واحد');
     state.log.push('الورقة في الوسط: ' + Deck.cardLabel(starter));
     return state;
   }
@@ -148,16 +148,16 @@
     if (card.rank === 2 && state.rules.stackTwos) {
       state.pendingDraw += 2;
       events.push({ type: 'stack2', total: state.pendingDraw });
-      state.log.push('💥 ' + p.name + ' لعب 2 → هز ' + state.pendingDraw + '!');
+      state.log.push(p.name + ' لعب 2 → هز ' + state.pendingDraw + '!');
     } else if (card.rank === 7 && state.rules.sevenChangesSuit) {
       var suit = (chosenSuit && Deck.suitById(chosenSuit)) ? chosenSuit : mostCommonSuit(state, state.turn);
       state.currentSuit = suit;
       events.push({ type: 'suit', suit: suit });
-      state.log.push('🃏 ' + p.name + ' لعب 7 (السيّار) وبدّل الساري لـ ' + Deck.suitById(suit).ar);
+      state.log.push(p.name + ' لعب 7 (السيّار) وبدّل الساري لـ ' + Deck.suitById(suit).ar);
     } else if (card.rank === 10 && state.rules.tenSkips) {
       skip = 1;
       events.push({ type: 'skip', by: 10, target: nextIndex(state, state.turn, 0) });
-      state.log.push('⏭️ ' + p.name + ' لعب 10 (Sota) → تسكيب ' + state.players[nextIndex(state, state.turn, 0)].name);
+      state.log.push(p.name + ' لعب 10 (Sota) → تسكيب ' + state.players[nextIndex(state, state.turn, 0)].name);
     } else if (card.rank === 1) {
       var r = state.rules.ones[card.suit] || { draw: 0, skip: false };
       if (r.draw > 0) {
@@ -165,23 +165,23 @@
         var got = giveCards(state, target, r.draw);
         skip = 1;
         events.push({ type: 'forceDraw', target: target, count: got.length });
-        state.log.push('💰 ' + p.name + ' لعب 1 الذهب → ' + state.players[target].name + ' هز ' + got.length + ' ورقات وما لعبش');
+        state.log.push(p.name + ' لعب 1 الذهب → ' + state.players[target].name + ' هز ' + got.length + ' ورقات وما لعبش');
       } else if (r.skip) {
         skip = 1;
         events.push({ type: 'skip', by: 1, target: nextIndex(state, state.turn, 0) });
-        state.log.push('⏭️ ' + p.name + ' لعب 1 ' + Deck.suitById(card.suit).ar + ' → تسكيب');
+        state.log.push(p.name + ' لعب 1 ' + Deck.suitById(card.suit).ar + ' → تسكيب');
       } else {
-        state.log.push('▶️ ' + p.name + ' لعب ' + Deck.cardLabel(card));
+        state.log.push(p.name + ' لعب ' + Deck.cardLabel(card));
       }
     } else {
-      state.log.push('▶️ ' + p.name + ' لعب ' + Deck.cardLabel(card));
+      state.log.push(p.name + ' لعب ' + Deck.cardLabel(card));
     }
 
     if (p.hand.length === 0) {
       state.over = true;
       state.winner = state.turn;
       events.push({ type: 'win', winner: state.turn });
-      state.log.push('🏆 ' + p.name + ' ربح اللعبة!');
+      state.log.push(p.name + ' ربح اللعبة!');
     } else {
       state.turn = nextIndex(state, state.turn, skip);
       events.push({ type: 'turn', turn: state.turn });
@@ -196,10 +196,10 @@
     var got = giveCards(state, state.turn, 1);
     state.drewThisTurn = true;
     if (!got.length) {
-      state.log.push('⚠️ ما بقا حتا ورق فالصندوق — ' + p.name + ' داز');
+      state.log.push('ما بقا حتا ورق فالصندوق — ' + p.name + ' داز');
       return { ok: true, card: null, empty: true };
     }
-    state.log.push('👋 ' + p.name + ' سحب ورقة');
+    state.log.push(p.name + ' سحب ورقة');
     return { ok: true, card: got[0] };
   }
 
@@ -222,7 +222,7 @@
       }
       state.over = true;
       state.winner = best;
-      state.log.push('🚫 الورق تحبس — ' + state.players[best].name + ' عندو أقل ورق وربح');
+      state.log.push('الورق تحبس — ' + state.players[best].name + ' عندو أقل ورق وربح');
       return { ok: true, blocked: true, winner: best };
     }
 
@@ -237,7 +237,7 @@
     var count = state.pendingDraw;
     var got = giveCards(state, state.turn, count);
     state.pendingDraw = 0;
-    state.log.push('😵 ' + p.name + ' هز ' + got.length + ' ورقات وداز الدور');
+    state.log.push(p.name + ' هز ' + got.length + ' ورقات وداز الدور');
     var loser = state.turn;
     state.turn = nextIndex(state, state.turn, 0);
     state.drewThisTurn = false;

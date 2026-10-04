@@ -197,11 +197,11 @@ body {
 }
 
 .brand {
-  display: flex; align-items: center; gap: 8px;
-  background: rgba(22, 12, 5, 0.45);
-  padding: 4px 14px; border-radius: 20px;
-  border: 1px solid rgba(212, 163, 75, 0.3);
-  backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(180deg, rgba(50, 26, 12, 0.75), rgba(26, 13, 6, 0.85));
+  padding: 4px 16px; border-radius: 14px;
+  border: 1.5px solid rgba(212, 163, 75, 0.45);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.45);
 }
 .brand-cards { font-size: 20px; }
 .brand h1 { margin: 0; font-size: 16px; letter-spacing: .5px; color: #fbf3df; font-weight: 800; }
@@ -455,14 +455,31 @@ body {
 .chip-pending { background: var(--danger); border-color: #ff7575; color: #fff; font-weight: 800; }
 
 .turn-box {
-  position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
-  text-align: center; pointer-events: none; z-index: 10;
+  text-align: center;
+  pointer-events: none;
+  z-index: 10;
+  margin-bottom: 2px;
 }
 .turn-label {
-  font-size: 12px; font-weight: 800; color: #fff4d8;
-  background: rgba(28, 14, 6, .78); border: 1.5px solid rgba(212, 163, 75, .6);
-  border-radius: 999px; padding: 4px 18px; display: inline-block; white-space: nowrap;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, .5);
+  font-size: 12.5px;
+  font-weight: 800;
+  color: #fff4d8;
+  background: linear-gradient(180deg, #442612, #291407);
+  border: 1.5px solid #d4a34b;
+  border-radius: 999px;
+  padding: 3px 16px;
+  display: inline-block;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .55), inset 0 1px 0 rgba(255, 235, 170, 0.2);
+  letter-spacing: 0.3px;
+  transition: all .2s ease;
+}
+.turn-label.is-my-turn,
+.is-my-turn {
+  background: linear-gradient(180deg, #7c4c23, #4f2a0e);
+  border-color: #ffd859;
+  color: #ffffff;
+  box-shadow: 0 0 16px rgba(232, 178, 31, 0.5), 0 4px 12px rgba(0, 0, 0, .6);
 }
 
 /* ============================================================

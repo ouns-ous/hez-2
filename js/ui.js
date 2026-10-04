@@ -28,8 +28,8 @@
     liftRatio: 0.14  // les cartes jouables montent juste un peu (fraction de la largeur)
   };
 
-  // Avatars des adversaires, par index de joueur.
-  var AVATARS = ['🧑', '🧔', '👩', '🧓', '👦', '🧕'];
+  // Avatars des adversaires, par index de joueur (classes CSS appliquées).
+  var AVATARS = ['', '', '', '', '', ''];
 
   // Score de session : toi contre les IA (gardé sur l'appareil).
   var SCORE_KEY = 'hez2.score.v1';
@@ -115,7 +115,7 @@
     // Sinon : la carte « dessinée » (rang + emoji)
     c.appendChild(make('span', 'corner', specialTag(card)));
     c.appendChild(make('span', 'rank', String(card.rank)));
-    c.appendChild(make('span', 'suit', suit ? suit.emoji : '?'));
+    c.appendChild(make('span', 'suit', suit ? suit.ar : '?'));
     return c;
   }
 
@@ -203,9 +203,9 @@
     if (state.rules.cartaRule && after === 1 && before > 1) {
       if (Math.random() < state.rules.aiForgetsCarta) {
         aiForgot = actor;
-        state.log.push('🙈 ' + state.players[actor].name + ' نسا يقول «Carta!» — عاقبو!');
+        state.log.push(state.players[actor].name + ' نسا يقول «Carta!» — عاقبو!');
       } else {
-        state.log.push('✋ ' + state.players[actor].name + ' قال «Carta!»');
+        state.log.push(state.players[actor].name + ' قال «Carta!»');
         showBubble(actor, 'Carta!');
       }
     }
@@ -235,7 +235,7 @@
     var card = state.players[me].hand[handIndex];
     if (!card) return;
     if (!Engine.playable(state, card)) {
-      state.log.push('⛔ ' + Deck.cardLabel(card) + ' ما كتلعبش دابا');
+      state.log.push(Deck.cardLabel(card) + ' ما كتلعبش دابا');
       return render();
     }
     if (card.rank === 7 && state.rules.sevenChangesSuit) {
@@ -268,7 +268,7 @@
       // On laisse le temps de voir la carte, puis le tour passe tout seul.
       timers.autoPass = setTimeout(function () {
         if (!state || state.over || state.turn !== humanIndex()) return;
-        state.log.push('⏭️ ما كاين ما نلعب — داز الدور');
+        state.log.push('ما كاين ما يتلعب — داز الدور');
         Engine.passTurn(state);
         render();
         scheduleAI();
@@ -302,8 +302,8 @@
       if (!pendingCarta || !state || state.over) return;
       pendingCarta = false;
       var got = Engine.giveCards(state, humanIndex(), state.rules.cartaPenalty);
-      state.log.push('😬 ما قلتش «Carta!» ف الوقت → هزيت ' + got.length + ' ورقات');
-      showBubble(humanIndex(), '😬 Carta!');
+      state.log.push('ما قلتش «Carta!» ف الوقت → هزيتي ' + got.length + ' ورقات');
+      showBubble(humanIndex(), 'Carta!');
       render();
     }, 4000);
   }
@@ -312,7 +312,7 @@
     if (!pendingCarta) return;
     pendingCarta = false;
     clearTimeout(timers.carta);
-    state.log.push('✋ قلت «Carta!» 👌');
+    state.log.push('قلتي «Carta!»');
     showBubble(humanIndex(), 'Carta!');
     render();
   }
@@ -322,8 +322,8 @@
     var target = aiForgot;
     aiForgot = null;
     var got = Engine.giveCards(state, target, state.rules.cartaPenalty);
-    state.log.push('👀 عاقبتي ' + state.players[target].name + '! ما قالش «Carta» → هز ' + got.length + ' ورقات');
-    showBubble(target, '😬');
+    state.log.push('عاقبتي ' + state.players[target].name + '! ما قالش «Carta» → هز ' + got.length + ' ورقات');
+    showBubble(target, 'هز ورقات!');
     render();
   }
 
@@ -338,7 +338,7 @@
       renderScore();
     }
 
-    $('winTitle').textContent = won ? '🏆 ربحتي!' : '😵 ربح ' + state.players[state.winner].name;
+    $('winTitle').textContent = won ? 'مبروك، ربحتي الطرح!' : 'ربح ' + state.players[state.winner].name;
     $('winSub').textContent = won
       ? 'خرّجتي كل الورق. مزيان! (نتا ' + wins.us + ' – ' + wins.them + ' خصومك)'
       : 'بقاو ليك ' + state.players[me].hand.length + ' ورقات. عاود جرب. (نتا ' + wins.us + ' – ' + wins.them + ' خصومك)';
@@ -492,9 +492,19 @@
       pend.classList.add('hidden');
     }
 
-    $('turnLabel').textContent = state.over
-      ? '🏁 سالات'
-      : (state.turn === humanIndex() ? '🎯 دورك' : '⏳ ' + state.players[state.turn].name);
+    var tl = $('turnLabel');
+    if (tl) {
+      if (state.over) {
+        tl.textContent = 'نهاية الطرح';
+        tl.classList.remove('is-my-turn');
+      } else if (state.turn === humanIndex()) {
+        tl.textContent = 'دورك';
+        tl.classList.add('is-my-turn');
+      } else {
+        tl.textContent = 'دور ' + state.players[state.turn].name;
+        tl.classList.remove('is-my-turn');
+      }
+    }
   }
 
   function renderHand() {
@@ -569,28 +579,28 @@
     host.innerHTML = '';
 
     if (state.over) {
-      var b = make('button', 'btn btn-primary', '🔄 لعبة جديدة');
+      var b = make('button', 'btn btn-primary', 'لعبة جديدة');
       b.type = 'button';
       b.addEventListener('click', function () { newGame(playerCount); });
       return host.appendChild(b);
     }
 
     if (pendingCarta) {
-      var bc = make('button', 'btn btn-danger pulse', '✋ Carta!');
+      var bc = make('button', 'btn btn-danger pulse', 'Carta!');
       bc.type = 'button';
       bc.addEventListener('click', sayCarta);
       host.appendChild(bc);
     }
 
     if (aiForgot !== null) {
-      var ba = make('button', 'btn btn-primary', '👀 عاقبو! ما قالش Carta');
+      var ba = make('button', 'btn btn-primary', 'عاقبو! ما قالش Carta');
       ba.type = 'button';
       ba.addEventListener('click', catchAI);
       host.appendChild(ba);
     }
 
     if (state.pendingDraw > 0) {
-      var bp = make('button', 'btn btn-danger' + (isHumanTurn() ? ' anim-tilt' : ''), '😵 هز ' + state.pendingDraw);
+      var bp = make('button', 'btn btn-danger' + (isHumanTurn() ? ' anim-tilt' : ''), 'هز ' + state.pendingDraw);
       bp.type = 'button';
       bp.disabled = !isHumanTurn();
       bp.addEventListener('click', resolveHumanPending);
@@ -602,7 +612,7 @@
       var mustDraw = canDraw && Engine.playableIndices(state, humanIndex()).length === 0;
 
       var cls = 'btn btn-primary' + (mustDraw ? ' anim-tilt' : '');
-      var hint = make('button', cls, '👋 سحب ورقة');
+      var hint = make('button', cls, 'سحب ورقة');
       hint.type = 'button';
       hint.disabled = !canDraw;
       hint.title = canDraw ? (mustDraw ? 'خاصك تسحب ورقة' : 'تقدر تسحب ورقة بلاصت ما تلعب') : (isHumanTurn() ? 'سحبتي فهاد الدور' : 'ماشي دورك');
@@ -611,14 +621,14 @@
     }
 
     if (isHumanTurn() && state.drewThisTurn) {
-      var bd = make('button', 'btn btn-ghost', '⏭️ دوز الدور');
+      var bd = make('button', 'btn btn-ghost', 'دوز الدور');
       bd.type = 'button';
       bd.addEventListener('click', passHumanTurn);
       host.appendChild(bd);
     }
 
     if (!isHumanTurn()) {
-      host.appendChild(make('span', 'wait-label', '⏳ دور ' + state.players[state.turn].name));
+      host.appendChild(make('span', 'wait-label', 'دور ' + state.players[state.turn].name));
     }
   }
 
