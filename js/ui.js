@@ -364,13 +364,28 @@
     seatByPlayer = {};
     seatByPlayer[me] = 'bl';
 
-    // Place les adversaires aux coins du tapis (br = Drishti, tr = Kim, tl = Okan)
-    var seats = others.length === 1 ? ['tr']
-      : others.length === 2 ? ['tr', 'tl']
-        : ['br', 'tr', 'tl'];
+    // 2 joueurs : adversaire en haut (cartes), profil en haut à droite (limn lfo9)
+    // 4 joueurs : forme losange (haut, 2 sur les côtés, moi en bas), profils chacun dans un coin
+    var config = others.length === 1
+      ? [{ corner: 'tr', cardPos: 'top' }]
+      : others.length === 2
+        ? [{ corner: 'tr', cardPos: 'right' }, { corner: 'tl', cardPos: 'left' }]
+        : [
+            { corner: 'br', cardPos: 'right' },
+            { corner: 'tr', cardPos: 'top' },
+            { corner: 'tl', cardPos: 'left' }
+          ];
 
-    function seat(pos, player, idx, showCards) {
-      var box = make('div', 'seat seat-' + pos + (state.turn === idx && !state.over ? ' is-turn' : ''));
+    others.forEach(function (idx, k) {
+      var cfg = config[k] || { corner: 'tr', cardPos: 'top' };
+      var corner = cfg.corner;
+      var cardPos = cfg.cardPos;
+      seatByPlayer[idx] = corner;
+
+      var player = state.players[idx];
+
+      // Profil dans son coin (avatar + plaque de nom)
+      var box = make('div', 'seat seat-' + corner + (state.turn === idx && !state.over ? ' is-turn' : ''));
       var avName = (player.name || '').toLowerCase();
       var avCls = 'avatar';
       if (avName === 'kim' || avName === 'okan' || avName === 'drishti' || avName === 'sanduslow') {
@@ -379,27 +394,21 @@
         avCls += ' avatar-' + (idx % 4);
       }
       box.appendChild(make('div', avCls));
-      // nom + nombre de cartes sur une seule ligne
-      var label = player.name + (showCards ? ' · ' + player.hand.length : '');
+      var label = player.name + ' · ' + player.hand.length;
       box.appendChild(make('div', 'seat-name', label));
-
-      if (showCards) {
-        var row = make('div', 'seat-cards');
-        var maxShown = pos === 'top' ? 7 : 5;
-        var shown = Math.min(player.hand.length, maxShown);
-        for (var c = 0; c < shown; c++) row.appendChild(make('div', 'mini-card'));
-        if (player.hand.length > shown) {
-          row.appendChild(make('div', 'seat-count', '+' + (player.hand.length - shown)));
-        }
-        box.appendChild(row);
-      }
       host.appendChild(box);
-    }
 
-    others.forEach(function (idx, k) {
-      var pos = seats[k] || 'top';
-      seatByPlayer[idx] = pos;
-      seat(pos, state.players[idx], idx, true);
+      // Cartes disposées en losange (haut / gauche / droite)
+      var cardBox = make('div', 'opp-cards opp-cards-' + cardPos);
+      var row = make('div', 'seat-cards');
+      var maxShown = cardPos === 'top' ? 7 : 5;
+      var shown = Math.min(player.hand.length, maxShown);
+      for (var c = 0; c < shown; c++) row.appendChild(make('div', 'mini-card'));
+      if (player.hand.length > shown) {
+        row.appendChild(make('div', 'seat-count', '+' + (player.hand.length - shown)));
+      }
+      cardBox.appendChild(row);
+      host.appendChild(cardBox);
     });
   }
 

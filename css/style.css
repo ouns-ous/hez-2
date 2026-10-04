@@ -325,6 +325,24 @@ body {
 /* Mode 2 joueurs : adversaire centré en haut */
 .seat-top { top: 3px; left: 50%; transform: translateX(-50%); align-items: center; }
 
+/* Cartes des adversaires disposées en losange (haut, gauche, droite) */
+.opp-cards {
+  position: absolute; pointer-events: none; z-index: 5;
+  display: flex;
+}
+.opp-cards-top {
+  top: 8px; left: 50%; transform: translateX(-50%);
+  align-items: center;
+}
+.opp-cards-left {
+  top: 48%; left: 16px; transform: translateY(-50%);
+  align-items: flex-start;
+}
+.opp-cards-right {
+  top: 48%; right: 16px; transform: translateY(-50%);
+  align-items: flex-end;
+}
+
 /* Avatars circulaires avec anneau doré métallique */
 .avatar {
   width: 44px; height: 44px; border-radius: 50%;
@@ -384,10 +402,10 @@ body {
 .seat-cards { display: flex; gap: 0; align-items: flex-start; }
 .seat-cards .mini-card + .mini-card { margin-inline-start: calc(var(--opp-w) * -0.52); }
 
-.seat-tl .seat-cards, .seat-left .seat-cards { flex-direction: row; align-items: flex-start; }
-.seat-tr .seat-cards, .seat-right .seat-cards { flex-direction: row; align-items: flex-end; }
+.seat-tl .seat-cards, .seat-left .seat-cards, .opp-cards-left .seat-cards { flex-direction: row; align-items: flex-start; }
+.seat-tr .seat-cards, .seat-right .seat-cards, .opp-cards-right .seat-cards { flex-direction: row; align-items: flex-end; }
 .seat-br .seat-cards { flex-direction: row; align-items: flex-end; }
-.seat-top .seat-cards { flex-direction: row; align-items: center; }
+.seat-top .seat-cards, .opp-cards-top .seat-cards { flex-direction: row; align-items: center; }
 
 /* ============================================================
    PLATEAU : Pioche inclinée à droite + Talon au centre
