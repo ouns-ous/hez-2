@@ -59,6 +59,10 @@
 @media (max-width: 372px) {
   :root { --card-w: 56px; --card-h: 89px; }
 }
+@media (max-width: 440px) {
+  .btn-wood-icon, .btn-gear-wood { width: 36px; height: 36px; }
+  .topbar-left { gap: 4px; }
+}
 
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
@@ -147,20 +151,38 @@ body {
   display: flex; align-items: center; gap: 8px;
 }
 
-/* Bouton Engrenage en bois style référence (Top-Left) */
+/* Boutons sculptés en bois et or style référence marocain (Top-Left) */
+.btn-wood-icon {
+  width: 44px; height: 44px; border-radius: 12px; border: none;
+  background-position: center; background-size: contain; background-repeat: no-repeat;
+  background-color: transparent;
+  cursor: pointer;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .65));
+  transition: transform .12s ease, filter .15s ease;
+  padding: 0; flex: 0 0 auto;
+}
+.btn-wood-icon:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, .85)) brightness(1.12);
+}
+.btn-wood-icon:active { transform: scale(0.94); filter: brightness(0.95); }
+
+.btn-top-home { background-image: url("../assets/table/home_wood.svg"); }
 .btn-gear-wood {
-  width: 48px; height: 48px; border-radius: 12px; border: none;
+  width: 44px; height: 44px; border-radius: 12px; border: none;
   background: url("../assets/table/gear_wood.svg") center / contain no-repeat;
   cursor: pointer;
-  filter: drop-shadow(0 5px 12px rgba(0, 0, 0, .65));
-  transition: transform .1s ease, filter .15s ease;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .65));
+  transition: transform .12s ease, filter .15s ease;
   padding: 0; flex: 0 0 auto;
 }
 .btn-gear-wood:hover {
-  transform: scale(1.05);
-  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, .8)) brightness(1.1);
+  transform: scale(1.08);
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, .85)) brightness(1.12);
 }
-.btn-gear-wood:active { transform: scale(0.95); }
+.btn-gear-wood:active { transform: scale(0.94); }
+.btn-top-new { background-image: url("../assets/table/reload_wood.svg"); }
+.btn-top-log { background-image: url("../assets/table/log_wood.svg"); }
 
 /* Petits boutons compagnons en bois (Recommencer, Historique) */
 .btn-wood {
